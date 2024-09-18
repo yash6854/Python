@@ -1,0 +1,70 @@
+class Bank:
+    def __init__(self,AccountName,Balance):
+        self.AccountNumber = AccountName
+        self.Balance = Balance
+
+    def add_balance(self,amount):
+        if amount < self.Balance:
+            self.Balance += amount
+            print(f" Amount : {amount} \n Balance = {self.Balance}")
+        else:
+            print("PLEASE ENTER POSITIVE AMOUNT")
+
+    def withdrawel(self,amount):
+        if amount > self.Balance:
+            self.amount -= amount
+            print(f" Withdrawed :{amount} \n Balance : {self.Balance}")
+        else:
+            print("iNSUFFICENT AOUNT IN YOUR ACCOUNT")
+
+    def show_balance(self):
+        print(f'Your Balanc is Rs{self.Balance}')
+
+class Minimum_Balance(Bank):
+    def __init__(self,AccountName,Balance,Min_Bal = 400):
+        super().__init__(AccountName,Balance)
+        self.Min_bal = Min_Bal
+    
+    def min_bal(self,amount):
+        if self.Balance - amount < self.Min_bal:
+            super().withdrawel(amount)
+        else:
+            print("amount is crossing Minimum Balance Criteria")
+
+class Saving_Interest(Bank):
+    def __init__(self,AcountName,Balance,interest_rate = 0.05):
+        super().__init__(AcountName,Balance)
+        self.interest_rate = interest_rate
+
+    def savings(self):
+        interest = self.Balance + self.interest_rate
+        self.Balance += interest
+        print(f"Interest : {self.interest_rate} , Balance : {self.Balance}")
+
+class Emi(Bank):
+    def __init__(self,AccountName,Balance,EMI_rate = 1000):
+        super().__init__(AccountName,Balance)
+        self.EMI_rate = EMI_rate
+
+    def cal_emi(self,amount):
+        if amount < self.Balance:
+            self.Balance-=amount
+            print(f'Amount Deducted : {amount} , Balance : {self.Balance}')
+
+        else:
+            print('Balance is Insufficient in your account')
+a = Saving_Interest("Yash",2000)
+a.savings()
+b = Emi("Yash",40000)
+b.cal_emi(3000)
+b.show_balance()
+
+        
+
+
+
+
+
+
+
+
